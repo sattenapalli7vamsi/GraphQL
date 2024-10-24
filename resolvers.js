@@ -13,6 +13,20 @@ const resolvers = {
                              if (args.name){return users.find(user => user.name == args.name)}
    } // Find user by ID
   },
+
+  Mutation: {
+    createUser: (parent, args) => {
+        const newUser = {
+          id: String(users.length + 1),
+          name: args.input.name,
+          email: args.input.email,
+        };
+        users.push(newUser);
+        return newUser;
+      },
+  }
 };
+
+
 
 module.exports = resolvers;
